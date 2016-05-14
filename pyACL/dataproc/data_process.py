@@ -12,7 +12,7 @@ class IPDATA_PROC:
     def __init__(self):        
         return
     
-    def GenRule(self,rule_width):
+    def GenRule(self,rule_width,rule_num):
 #         r=random.randint(0,0xFFFFFFFF)
 #         rchar=str(bin(r))
 #          
@@ -31,7 +31,7 @@ class IPDATA_PROC:
  
  
         ruleset=[] 
-        for x in range(1000):
+        for x in range(rule_num):
             rule=''
             for x in range(rule_width):
     #             r=random.choice(['0','1','*'])

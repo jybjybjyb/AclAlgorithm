@@ -4,7 +4,7 @@
 import matplotlib.pyplot as plt
 import itertools
 from dataproc import data_process as db
-
+import time
 
 class VEC(object):
     
@@ -442,7 +442,7 @@ class DDBS(object):
             rulesum += b.rulenum
         print(">> account of classified rules %d" % rulesum)
         print(">> duplication is %d" %int((rulesum)/len(self.ruleset)))
-        print(">> account of memory used %d KB" %((rulesum * 4)>>10))
+        print(">> account of memory used %d kByte" %((rulesum * 4>>10)))
         
     
     
@@ -468,9 +468,11 @@ if __name__ == "__main__":
     ddbs = DDBS()
     r = db.IPDATA_PROC()
     
-    ddbs.DumpRule(r.GenRule(160))
-    
+    ddbs.DumpRule(r.GenRule(160,1000))
+    start=time.clock()
     ddbs.EMTBuild()
+    end=time.clock()
+    print ("totlal cpu is %f s " % (end-start))
     ddbs.Statistic()
     ddbs.Plot()
     

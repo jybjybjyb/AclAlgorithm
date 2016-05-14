@@ -7,11 +7,14 @@ import cProfile
 import pstats
 from operator import itemgetter,attrgetter
 import matplotlib.pyplot as plt
-from memory_profiler import profile
-from memory_profiler import memory_usage
+# from memory_profiler import profile
+# from memory_profiler import memory_usage
 import time
 import sys
 from copy import deepcopy
+
+
+INPUT_FILE_NAME="..\\MyFilter\\1k.txt"
 
 
 class FileProc(object):
@@ -1308,7 +1311,7 @@ if __name__ == "__main__":
     
     hs=HyperSplit()
     hs.SetPara(100, 32)
-    hs.DumpInputData("table_acl1_10k")
+    hs.DumpInputData(INPUT_FILE_NAME)
     
 #     for x in hs.ruleset:
 #         print(x)
@@ -1333,7 +1336,7 @@ if __name__ == "__main__":
 
     '''
     hs.Statistic()
-    print(memory_usage())
+#     print(memory_usage())
     print("finish...")
 
     

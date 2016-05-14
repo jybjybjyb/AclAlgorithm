@@ -187,12 +187,13 @@ class HyperSplit(object):
         proc=FileProc()
         print("Reading...")
         
-        self.ruleset=proc.GenRules(".\\MyFilter\\acl4k_1")  
+
+        self.ruleset=proc.GenRules("..\\MyFilter\\acl4k_1")  
         print("len(self.ruleset) is %d" % len(self.ruleset))
 #         for r in self.ruleset:
 #             print(r)
         
-        self.ips_set=proc.GenIP(".\\MyFilter\\acl4k_1_trace") 
+        self.ips_set=proc.GenIP("..\\MyFilter\\acl4k_1_trace") 
         print("len(self.ips_set) is %d" % len(self.ips_set))
 
 #         for p in self.ips_set:
@@ -541,6 +542,8 @@ class HyperSplit(object):
         print(">> minimum hierarchy is",min_h)
         print(">> maximum hierarchy is",max_h)
         print(">> avarge hierarchy is",(sum_h/len(self.leafset)))
+        memory_use = self.node_cnt * 8
+        print(">> mem-cost is", int(memory_use >> 10))
         print(">> all rules matching...")
         
                     
@@ -558,7 +561,7 @@ class HyperSplit(object):
             handle.write("\n________________[memory]__________________\n")
             handle.write("account of node :%d\n" % (self.node_cnt))
             handle.write("account of leaf :%d\n" % (len(self.leafset)))
-            handle.write("duplex is  :%d\n" % duplex)
+            handle.write("duplex is  :%f\n" % duplex)
             
             memory_use = self.node_cnt * 8
             handle.write("Assuming 8Byte per node\n")
@@ -633,7 +636,7 @@ class HyperSplit(object):
     
             
 if __name__ == "__main__":
-    
+    print(os.path.abspath(".."))
     f = FileProc()
     hs = HyperSplit()
     hs.DumpInputData()
